@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Domain", "0 - Domain", "{08D445FA-1669-4AE4-AD26-B8025AC9AC0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Infra", "1 - Infra", "{13C2556A-921C-4DA7-BC85-A83FA63EB5AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 - Infra.Data", "1.1 - Infra.Data", "{BD4FF78E-0815-4A13-9F89-18A1597E21B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{1C5D3B17-DEB9-483D-8B2F-672F7AA44E40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 - Infra.Ioc", "1.2 - Infra.Ioc", "{22C72243-F02C-4941-B86E-5E8E4884F1CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Web", "3 - Web", "{B4A4CA19-0FA2-46D8-B45D-C9C76EE9AF8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - Web.Api", "3.1 - Web.Api", "{45F14C97-E1EC-4649-B498-D93C6A8B328E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorujasDev.Schedule.CosmosDb.Domain", "src\CorujasDev.Schedule.CosmosDb.Domain\CorujasDev.Schedule.CosmosDb.Domain.csproj", "{F8F99075-2213-474D-823E-FC9B2DEBA8F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorujasDev.Schedule.CosmosDb.Infra.Data", "src\CorujasDev.Schedule.CosmosDb.Infra.Data\CorujasDev.Schedule.CosmosDb.Infra.Data.csproj", "{C8B7626F-DCC1-4771-AB6A-9B917B04359F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorujasDev.Schedule.CosmosDb.Infra.Ioc", "src\CorujasDev.Schedule.CosmosDb.Infra.Ioc\CorujasDev.Schedule.CosmosDb.Infra.Ioc.csproj", "{2284E520-FAF2-4368-A342-EF7EB5277F3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorujasDev.Schedule.CosmosDb.Application", "src\CorujasDev.Schedule.CosmosDb.Application\CorujasDev.Schedule.CosmosDb.Application.csproj", "{2A0B4B3A-EC9E-4F63-8361-D144D5605DDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorujasDev.Schedule.CosmosDb.Web.Api", "src\CorujasDev.Schedule.CosmosDb.Web.Api\CorujasDev.Schedule.CosmosDb.Web.Api.csproj", "{C09EA93E-0438-496E-AE03-DD78010826C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8F99075-2213-474D-823E-FC9B2DEBA8F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F99075-2213-474D-823E-FC9B2DEBA8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F99075-2213-474D-823E-FC9B2DEBA8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F99075-2213-474D-823E-FC9B2DEBA8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B7626F-DCC1-4771-AB6A-9B917B04359F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B7626F-DCC1-4771-AB6A-9B917B04359F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B7626F-DCC1-4771-AB6A-9B917B04359F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B7626F-DCC1-4771-AB6A-9B917B04359F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2284E520-FAF2-4368-A342-EF7EB5277F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2284E520-FAF2-4368-A342-EF7EB5277F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2284E520-FAF2-4368-A342-EF7EB5277F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2284E520-FAF2-4368-A342-EF7EB5277F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A0B4B3A-EC9E-4F63-8361-D144D5605DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A0B4B3A-EC9E-4F63-8361-D144D5605DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A0B4B3A-EC9E-4F63-8361-D144D5605DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A0B4B3A-EC9E-4F63-8361-D144D5605DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09EA93E-0438-496E-AE03-DD78010826C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09EA93E-0438-496E-AE03-DD78010826C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09EA93E-0438-496E-AE03-DD78010826C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09EA93E-0438-496E-AE03-DD78010826C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD4FF78E-0815-4A13-9F89-18A1597E21B6} = {13C2556A-921C-4DA7-BC85-A83FA63EB5AB}
+		{22C72243-F02C-4941-B86E-5E8E4884F1CC} = {13C2556A-921C-4DA7-BC85-A83FA63EB5AB}
+		{45F14C97-E1EC-4649-B498-D93C6A8B328E} = {B4A4CA19-0FA2-46D8-B45D-C9C76EE9AF8F}
+		{F8F99075-2213-474D-823E-FC9B2DEBA8F5} = {08D445FA-1669-4AE4-AD26-B8025AC9AC0C}
+		{C8B7626F-DCC1-4771-AB6A-9B917B04359F} = {BD4FF78E-0815-4A13-9F89-18A1597E21B6}
+		{2284E520-FAF2-4368-A342-EF7EB5277F3A} = {22C72243-F02C-4941-B86E-5E8E4884F1CC}
+		{2A0B4B3A-EC9E-4F63-8361-D144D5605DDD} = {1C5D3B17-DEB9-483D-8B2F-672F7AA44E40}
+		{C09EA93E-0438-496E-AE03-DD78010826C4} = {45F14C97-E1EC-4649-B498-D93C6A8B328E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DE415B1-CFC6-43A8-A965-09B03C260574}
+	EndGlobalSection
+EndGlobal
