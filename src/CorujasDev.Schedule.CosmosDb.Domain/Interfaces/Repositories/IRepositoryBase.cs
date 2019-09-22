@@ -6,10 +6,10 @@ namespace CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
     {
-        Task Add(TEntity obj);
-        Task<TEntity> GetById(Guid id);
-        Task<IEnumerable<TEntity>> GetAll();
-        Task Update(TEntity obj);
-        Task Remove(TEntity obj);
+        void Add(TEntity obj);
+        TEntity GetById(string id);
+        IEnumerable<TEntity> GetAll();
+        void Update(string id, TEntity obj);
+        void Remove(string id);
     }
 }

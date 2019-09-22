@@ -1,10 +1,7 @@
-﻿using CorujasDev.Schedule.CosmosDb.Infra.Data.Contexts;
-using CorujasDev.Schedule.CosmosDb.Infra.Ioc;
+﻿using CorujasDev.Schedule.CosmosDb.Infra.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Cosmos.Storage.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,17 +19,6 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ScheduleContext>(options =>
-                options.UseCosmos(
-                        Configuration.GetSection("CosmosDB:URI").Value,
-                        Configuration.GetSection("CosmosDB:PrimaryKey").Value,
-                        Configuration.GetSection("CosmosDB:DatabaseName").Value,
-                        config =>
-                        {
-                            config.ExecutionStrategy(d => new CosmosExecutionStrategy(d));
-                        }
-                    ));
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             NativeInjectorConfig.RegisterServices(services);

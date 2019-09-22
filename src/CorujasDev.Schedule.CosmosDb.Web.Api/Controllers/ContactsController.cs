@@ -1,10 +1,8 @@
 ﻿using CorujasDev.Schedule.CosmosDb.Domain.Entities;
 using CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories;
-using CorujasDev.Schedule.CosmosDb.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 {
@@ -21,11 +19,11 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
         // GET: api/Todo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
+        public ActionResult<IEnumerable<Contact>> GetContacts()
         {
             try
             {
-                var contacts = await _contactRepository.GetAll();
+                var contacts = _contactRepository.GetAll();
 
                 return Ok(contacts);
             }
@@ -37,11 +35,11 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Contact>> GetContactById(Guid id)
+        public ActionResult<Contact> GetContactById(string id)
         {
             try
             {
-                var contact = await _contactRepository.GetById(id);
+                var contact = _contactRepository.GetById(id);
 
                 if (contact == null)
                 {
@@ -56,19 +54,87 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
             }
         }
 
+        // GET: api/Todo/5
+        [HttpGet("name/{name}")]
+        public ActionResult<IEnumerable<Contact>> GetContactByName(string name)
+        {
+            try
+            {
+                var contacts = _contactRepository.GetByName(name);
+
+                if (contacts == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(contacts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         /// <summary>
         /// Create
         /// </summary>
         /// <param name="contact"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> PostContact(Contact contact)
+        public IActionResult PostContact(Contact contact)
         {
             try
             {
-                await _contactRepository.Add(contact);
+                _contactRepository.Add(contact);
 
-                return CreatedAtAction(nameof(GetContactById), new { id = contact.ID }, contact);
+                return CreatedAtAction(nameof(GetContactById), new { contact.id }, contact);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutContact(string id, Contact contact)
+        {
+            try
+            {
+
+                var returnContact = _contactRepository.GetById(id);
+
+                if (returnContact == null)
+                {
+                    return NotFound();
+                }
+
+                _contactRepository.Update(id, contact);
+
+                return CreatedAtAction(nameof(GetContactById), new { contact.id }, contact);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteContact(string id)
+        {
+            try
+            {
+
+                var returnContact = _contactRepository.GetById(id);
+
+                if (returnContact == null)
+                {
+                    return NotFound();
+                }
+
+                _contactRepository.Remove(id);
+
+                return Ok();
             }
             catch (Exception ex)
             {
