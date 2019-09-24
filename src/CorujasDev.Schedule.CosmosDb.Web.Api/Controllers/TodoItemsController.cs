@@ -1,36 +1,36 @@
-﻿using AutoMapper;
-using CorujasDev.Schedule.CosmosDb.Application.ViewModel.Contact;
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using AutoMapper;
+using CorujasDev.Schedule.CosmosDb.Application.ViewModel.TodoItem;
 using CorujasDev.Schedule.CosmosDb.Application.ViewModel.User;
 using CorujasDev.Schedule.CosmosDb.Domain.Entities;
 using CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-    public class ContactsController : ControllerBase
+    public class TodoItemsController : ControllerBase
     {
-        private readonly IContactRepository _contactRepository;
+        private readonly ITodoItemRepository _TodoItemRepository;
         private readonly IUserRepository _usertRepository;
         private readonly IMapper _mapper;
 
-        public ContactsController(IContactRepository contactRepository, IUserRepository usertRepository, IMapper mapper)
+        public TodoItemsController(ITodoItemRepository TodoItemRepository, IUserRepository usertRepository, IMapper mapper)
         {
-            _contactRepository = contactRepository;
+            _TodoItemRepository = TodoItemRepository;
             _usertRepository = usertRepository;
             _mapper = mapper;
         }
 
         // GET: api/Todo
         [HttpGet]
-        public ActionResult<IEnumerable<ContactViewModel>> GetContacts()
+        public ActionResult<IEnumerable<TodoItemViewModel>> GetTodoItems()
         {
             try
             {
@@ -38,7 +38,7 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
                 UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
 
-                return Ok(_mapper.Map<List<ContactViewModel>>(user.Contacts));
+                return Ok(_mapper.Map<IEnumerable<TodoItemViewModel>>(user.TodoItems));
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
-        public ActionResult<ContactViewModel> GetContactById(string id)
+        public ActionResult<TodoItemViewModel> GetTodoItemById(string id)
         {
             try
             {
@@ -56,14 +56,14 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
                 UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
 
-                var contact = user.Contacts.FirstOrDefault(c => c.id == id);
+                var TodoItem = user.TodoItems.FirstOrDefault(c => c.id == id);
 
-                if (contact == null)
+                if (TodoItem == null)
                 {
                     return NotFound();
                 }
 
-                return _mapper.Map<ContactViewModel>(contact);
+                return _mapper.Map<TodoItemViewModel>(TodoItem);
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
         // GET: api/Todo/5
         [HttpGet("name/{name}")]
-        public ActionResult<IEnumerable<ContactViewModel>> GetContactByName(string name)
+        public ActionResult<IEnumerable<TodoItemViewModel>> GetTodoItemByName(string name)
         {
             try
             {
@@ -81,14 +81,14 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
                 UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
 
-                var contacts = user.Contacts.Where(c => c.FirstName.ToLower().Contains(name));
+                var TodoItems = user.TodoItems.Where(c => c.Name.ToLower().Contains(name));
 
-                if (contacts == null)
+                if (TodoItems == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(_mapper.Map<List<ContactViewModel>>(contacts));
+                return Ok(_mapper.Map<IEnumerable<TodoItemViewModel>>(TodoItems));
             }
             catch (Exception ex)
             {
@@ -99,11 +99,11 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
         /// <summary>
         /// Create
         /// </summary>
-        /// <param name="contact"></param>
+        /// <param name="TodoItem"></param>
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public IActionResult PostContact(ContactViewModel contact)
+        public IActionResult PostTodoItem(TodoItemViewModel TodoItem)
         {
             try
             {
@@ -111,14 +111,14 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
                 UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
 
-                if (user.Contacts == null)
-                    user.Contacts = new List<ContactViewModel>();
+                if (user.TodoItems == null)
+                    user.TodoItems = new List<TodoItemViewModel>();
 
-                user.Contacts.Add(_mapper.Map<ContactViewModel>(contact));
+                user.TodoItems.Add(_mapper.Map<TodoItemViewModel>(TodoItem));
 
                 _usertRepository.Update(userId, _mapper.Map<UserEntity>(user));
 
-                return CreatedAtAction(nameof(GetContactById), new { contact.id }, contact);
+                return CreatedAtAction(nameof(GetTodoItemById), new { TodoItem.id }, TodoItem);
             }
             catch (Exception ex)
             {
@@ -128,7 +128,7 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public IActionResult PutContact(string id, ContactViewModel contact)
+        public IActionResult PutTodoItem(string id, TodoItemViewModel TodoItem)
         {
             try
             {
@@ -136,21 +136,21 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
                 UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
 
-                var returnContact = user.Contacts.FirstOrDefault(c => c.id == id);
+                var returnTodoItem = user.TodoItems.FirstOrDefault(c => c.id == id);
 
-                if (returnContact == null)
+                if (returnTodoItem == null)
                 {
                     return NotFound();
                 }
 
-                var index = user.Contacts.IndexOf(returnContact);
+                var index = user.TodoItems.IndexOf(returnTodoItem);
 
                 if (index != -1)
-                    user.Contacts[index] = _mapper.Map<ContactViewModel>(contact);
+                    user.TodoItems[index] = _mapper.Map<TodoItemViewModel>(TodoItem);
 
                 _usertRepository.Update(user.id, _mapper.Map<UserEntity>(user));
 
-                return CreatedAtAction(nameof(GetContactById), new { contact.id }, contact);
+                return CreatedAtAction(nameof(GetTodoItemById), new { TodoItem.id }, TodoItem);
             }
             catch (Exception ex)
             {
@@ -160,7 +160,7 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteContact(string id)
+        public IActionResult DeleteTodoItem(string id)
         {
             try
             {
@@ -169,17 +169,17 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
 
                 UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
 
-                var returnContact = user.Contacts.FirstOrDefault(c => c.id == id);
+                var returnTodoItem = user.TodoItems.FirstOrDefault(c => c.id == id);
 
-                if (returnContact == null)
+                if (returnTodoItem == null)
                 {
                     return NotFound();
                 }
 
-                var index = user.Contacts.IndexOf(returnContact);
+                var index = user.TodoItems.IndexOf(returnTodoItem);
 
                 if (index != -1)
-                    user.Contacts.RemoveAt(index);
+                    user.TodoItems.RemoveAt(index);
 
                 _usertRepository.Update(user.id, _mapper.Map<UserEntity>(user));
 

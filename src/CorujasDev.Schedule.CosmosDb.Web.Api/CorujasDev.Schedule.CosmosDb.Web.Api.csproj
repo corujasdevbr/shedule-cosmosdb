@@ -6,13 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Application\CorujasDev.Schedule.CosmosDb.Application.csproj" />
     <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Domain\CorujasDev.Schedule.CosmosDb.Domain.csproj" />
     <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Infra.Data\CorujasDev.Schedule.CosmosDb.Infra.Data.csproj" />
     <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Infra.Ioc\CorujasDev.Schedule.CosmosDb.Infra.Ioc.csproj" />

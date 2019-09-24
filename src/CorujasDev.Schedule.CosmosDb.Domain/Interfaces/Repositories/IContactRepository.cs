@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories
 {
-    public interface IRepositoryContact : IRepositoryBase<Contact>
+    public interface IContactRepository : IBaseRepository<ContactEntity>
     {
-        IEnumerable<Contact> GetByName(string name);
+        IEnumerable<ContactEntity> GetByName(string name);
     }
 }

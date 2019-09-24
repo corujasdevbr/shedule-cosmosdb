@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories
 {
-    public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
+    public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
         void Add(TEntity obj);
         TEntity GetById(string id);

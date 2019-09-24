@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CorujasDev.Schedule.CosmosDb.Infra.Data.Repositories
 {
-    public abstract class RepositoryBaseDocumentClient<TEntity> : IRepositoryBase<TEntity> where TEntity : class
+    public abstract class RepositoryBaseDocumentClient<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         public  DocumentClient client;
         private Uri collectionUri;

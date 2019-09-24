@@ -2,7 +2,7 @@
 
 namespace CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories
 {
-    public interface IRepositoryTodoItem : IRepositoryBase<TodoItem>
+    public interface ITodoItemRepository : IBaseRepository<TodoItemEntity>
     {
     }
 }

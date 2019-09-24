@@ -8,8 +8,9 @@ namespace CorujasDev.Schedule.CosmosDb.Infra.Ioc
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<IRepositoryContact, ContactRepository>();
-            services.AddScoped<IRepositoryTodoItem, TodoItemRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<ITodoItemRepository, TodoItemRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

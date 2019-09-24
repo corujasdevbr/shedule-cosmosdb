@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "20f8eb79-623b-49f7-b1bd-91d7dbb20b5f",
+		"name": "Shedule",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Fernando Henrique\",\n\t\"email\" : \"colte12@gmail.com\",\n\t\"password\" : \"653214\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/account/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"account",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"colte12@gmail.com\",\n\t\"password\" : \"653214\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/account/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Post Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI4MjI5MiwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.QaX8mhr--JOSBbhIpAkdkKr7SXbUF59FxCXTI1JVKhU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstname\" : \"Ligia\",\n\t\"lastname\" : \"Olivaira\",\n\t\"telephone\" : \"(11) 972084339\",\n\t\"email\" : \"colte12@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contacts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI4OTI1MiwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.AVeRQUs1z1td2EGhXVrzccRR6AcCcgFuM92FTq4P-yw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Contacts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI4OTI1MiwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.AVeRQUs1z1td2EGhXVrzccRR6AcCcgFuM92FTq4P-yw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"firstName\": \"Fernando\",\r\n        \"lastName\": \"Henrique\",\r\n        \"birthday\": \"0001-01-01T00:00:00\",\r\n        \"telephone\": \"(11)972084339\",\r\n        \"email\" : \"fernando.guerra@youcourse.com.br\",\r\n        \"id\": \"79f272cc-25e8-477b-b11a-997312d5708c\",\r\n        \"createdDate\": \"2019-09-23T20:15:02.1409665-03:00\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/contacts/79f272cc-25e8-477b-b11a-997312d5708c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"contacts",
+								"79f272cc-25e8-477b-b11a-997312d5708c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI5Mzc3NiwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.HN6Lu_4ERCbUEBqGANv7DXoTh4EVVMc0vL1AEO54QAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TodoItem",
+			"item": [
+				{
+					"name": "Post TodoItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI5NTM2MiwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.kjxRkS_yzDkLnyae_mFHVukTnMOff_KRcuHJcgkxI98",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Daily Meeting Space\",\n\t\"isComplete\" : false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/todoitems",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"todoitems"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put TodoItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI5NTQ4NiwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.qEeKRJST76hSei6Q_Qt8sHJdEVdbLUF1ypaxR_jdpg0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Daily Meeting Space\",\r\n    \"isComplete\": true,\r\n    \"id\": \"37b3dbf9-2fab-484e-8096-c3fdcbb57972\",\r\n    \"createdDate\": \"2019-09-23T23:52:58.806635-03:00\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/todoitems/37b3dbf9-2fab-484e-8096-c3fdcbb57972",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"todoitems",
+								"37b3dbf9-2fab-484e-8096-c3fdcbb57972"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get TodoItems",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkZlcm5hbmRvIEhlbnJpcXVlIiwiZW1haWwiOiJjb2x0ZTEyQGdtYWlsLmNvbSIsImp0aSI6Ijc2YTIxMzBhLTVmMDMtNDAyMC1iMGIwLTBkMGMyMGRkNzU3YSIsImV4cCI6MTU2OTI5NzQ0OCwiaXNzIjoiQ29ydWphc0Rldi5TY2hlZHVsZSIsImF1ZCI6IkNvcnVqYXNEZXYuU2NoZWR1bGUifQ.wLWiaLdoscEDvucRtcqJLiOqfASoVKSnt1GGttZjJNg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/todoitems",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"todoitems"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
