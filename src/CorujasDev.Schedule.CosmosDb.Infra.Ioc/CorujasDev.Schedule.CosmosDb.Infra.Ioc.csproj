@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Application\CorujasDev.Schedule.CosmosDb.Application.csproj" />
     <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Infra.Data\CorujasDev.Schedule.CosmosDb.Infra.Data.csproj" />
   </ItemGroup>
 

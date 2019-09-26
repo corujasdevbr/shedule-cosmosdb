@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Common.Util\CorujasDev.Schedule.CosmosDb.Common.Util.csproj" />
     <ProjectReference Include="..\CorujasDev.Schedule.CosmosDb.Domain\CorujasDev.Schedule.CosmosDb.Domain.csproj" />
   </ItemGroup>
 

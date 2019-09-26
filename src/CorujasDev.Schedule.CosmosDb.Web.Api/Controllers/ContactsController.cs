@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CorujasDev.Schedule.CosmosDb.Application.Interfaces;
 using CorujasDev.Schedule.CosmosDb.Application.ViewModel.Contact;
 using CorujasDev.Schedule.CosmosDb.Application.ViewModel.User;
 using CorujasDev.Schedule.CosmosDb.Domain.Entities;
@@ -17,13 +18,15 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
     [Authorize]
     public class ContactsController : ControllerBase
     {
+        private readonly IContactService _contactService;
         private readonly IContactRepository _contactRepository;
         private readonly IUserRepository _usertRepository;
         private readonly IMapper _mapper;
 
-        public ContactsController(IContactRepository contactRepository, IUserRepository usertRepository, IMapper mapper)
+        public ContactsController(IContactRepository contactRepository, IUserRepository usertRepository, IMapper mapper, IContactService contactService)
         {
             _contactRepository = contactRepository;
+            _contactService = contactService;
             _usertRepository = usertRepository;
             _mapper = mapper;
         }
@@ -36,9 +39,12 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
             {
                 string userId = HttpContext.User.Claims.First(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
 
-                UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
+                var contacts = _contactService.GetAll(userId);
 
-                return Ok(_mapper.Map<List<ContactViewModel>>(user.Contacts));
+                if (contacts == null)
+                    return NotFound();
+
+                return Ok(contacts);
             }
             catch (Exception ex)
             {
@@ -54,16 +60,14 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api.Controllers
             {
                 string userId = HttpContext.User.Claims.First(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
 
-                UserViewModel user = _mapper.Map<UserViewModel>(_usertRepository.GetById(userId));
-
-                var contact = user.Contacts.FirstOrDefault(c => c.id == id);
+                ContactViewModel contact = _contactService.GetById(userId, id);
 
                 if (contact == null)
                 {
                     return NotFound();
                 }
 
-                return _mapper.Map<ContactViewModel>(contact);
+                return Ok(contact);
             }
             catch (Exception ex)
             {

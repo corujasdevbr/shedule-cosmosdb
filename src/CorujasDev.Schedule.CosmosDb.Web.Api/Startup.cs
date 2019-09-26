@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CorujasDev.Schedule.CosmosDb.Infra.Ioc;
+﻿using CorujasDev.Schedule.CosmosDb.Infra.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using CorujasDev.Schedule.CosmosDb.Web.Api.Extensions;
 using System;
 using Swashbuckle.AspNetCore.Swagger;
+using CorujasDev.Schedule.CosmosDb.Infra.Data.Migration;
 
 namespace CorujasDev.Schedule.CosmosDb.Web.Api
 {
@@ -64,10 +64,13 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "CorujasDev Shedule Web API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "CorujasDev Schedule Web API", Version = "v1" });
             });
 
             services.AddAutoMapperSetup();
+
+            DCCodeFirst.CreateDatabaseIfNotExistsAsync();
+            DCCodeFirst.CreateDocumentCollectionIfNotExistsAsync();
 
             NativeInjectorConfig.RegisterServices(services);
         }
@@ -87,7 +90,7 @@ namespace CorujasDev.Schedule.CosmosDb.Web.Api
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CorujasDev Shedule");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CorujasDev Schedule");
             });
 
             app.UseAuthentication();

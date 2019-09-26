@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CorujasDev.Schedule.CosmosDb.Domain.Interfaces.Repositories
 {
-    public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
+    public interface IBaseRepository<TEntity>  where TEntity : class
     {
         void Add(TEntity obj);
         TEntity GetById(string id);
